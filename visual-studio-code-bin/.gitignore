@@ -1,0 +1,10 @@
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!PKGBUILD
+!.SRCINFO
+!visual-studio-code-url-handler.desktop
+!visual-studio-code-workspace.xml
+!visual-studio-code.desktop
