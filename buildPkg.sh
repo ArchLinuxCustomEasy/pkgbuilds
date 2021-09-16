@@ -1,17 +1,16 @@
 #!/bin/bash
 
 # Name: buildPkg.sh
-# Description: Build package
-# Author: Tuxi Metal <tuximetal[at]lgdweb[dot]fr>
-# Url: https://github.com/custom-archlinux/iso-sources
+# Description: Build packages
+# Author: Titux Metal <tituxmetal[at]lgdweb[dot]fr>
+# Url: https://github.com/ArchLinuxCustomEasy/pkgbuilds
 # Version: 1.0
-# Revision: 2021.06.28
+# Revision: 2021.09.16
 # License: MIT License
 
 currentLocation="$(pwd)"
 packageNames="$(ls -d -- */ | cut -f1 -d '/')"
 packageNames+=("exit")
-PS3="Choose a number to select the package to build or 'q' to cancel: "
 mainRepositoryPath="/opt/alice"
 packageToBuild=""
 
@@ -32,16 +31,11 @@ handleError() {
 }
 
 buildPackage() {
-  printMessage "Updating package sums in $(pwd)"
   pattern=$(ls ./PKGBUILD 2>/dev/null | wc -l)
   if [[ $pattern != 0 ]]
   then
-    updpkgsums
-    sleep .5
     printMessage "Build package ${packageToBuild}"
     makepkg --syncdeps --rmdeps --clean --force --noconfirm
-
-    printMessage "Current directory: $(pwd) in packageBuild function"
   fi
 }
 
@@ -53,8 +47,6 @@ changeDirectory() {
   then
     printMessage "Enter in ${name} directory"
     cd ${name}
-
-    printMessage "Current directory: $(pwd) in changeDirectory function"
   fi
 }
 
@@ -70,8 +62,9 @@ movePkgToRepo() {
 }
 
 removeSources() {
-  printMessage "Remove sources from $(pwd)"
-  git clean -xdf
+  cd ${currentLocation}
+  printMessage "Clean ${packageToBuild} sources"
+  git clean -Xdf ${packageToBuild}
 }
 
 selectPackageToBuild() {
@@ -83,7 +76,6 @@ selectPackageToBuild() {
     exit)
       printMessage "All is done!"
       exit 0
-      # break
       ;;
     *)
       if [[ "$opt" == "" ]]
@@ -97,7 +89,6 @@ selectPackageToBuild() {
       buildPackage
       movePkgToRepo
       removeSources
-      # break
       ;;
     esac
     selectPackageToBuild
