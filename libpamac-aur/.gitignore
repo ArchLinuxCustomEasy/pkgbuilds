@@ -1,0 +1,8 @@
+*
+
+!.SRCINFO
+!.gitignore
+!PKGBUILD
+!fix-appstream-data.hook
+!fix-appstream-data.sh
+!pamac.install
