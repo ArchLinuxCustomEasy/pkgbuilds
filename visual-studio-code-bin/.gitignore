@@ -8,3 +8,5 @@
 !visual-studio-code-url-handler.desktop
 !visual-studio-code-workspace.xml
 !visual-studio-code.desktop
+!visual-studio-code-bin.install
+!visual-studio-code-bin.sh
