@@ -36,8 +36,7 @@ build() {
 }
 
 package() {
-	cd "$srcdir/$pkgname" 
+	cd "$srcdir/$pkgname"
 	make DESTDIR="$pkgdir" install
 	install -Dm644 license.md "${pkgdir}/usr/share/licenses/${pkgname}/WTFPL"
 }
-
