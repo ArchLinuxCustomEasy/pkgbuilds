@@ -1,17 +1,17 @@
 #!/bin/bash
 
 # Name: buildPkg.sh
-# Description: Build packages
+# Description: Build packages and move it in the local repository
 # Author: Titux Metal <tituxmetal[at]lgdweb[dot]fr>
 # Url: https://github.com/ArchLinuxCustomEasy/pkgbuilds
-# Version: 1.0
-# Revision: 2021.09.16
+# Version: 2.0
+# Revision: 2022.04.17
 # License: MIT License
 
 currentLocation="$(pwd)"
 packageNames="$(ls -d -- */ | cut -f1 -d '/')"
 packageNames+=("exit")
-mainRepositoryPath="/opt/alice"
+mainRepositoryPath="$HOME/ALICE-workspace/repository"
 packageToBuild=""
 
 printMessage() {
