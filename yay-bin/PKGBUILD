@@ -1,5 +1,4 @@
-# Maintainer: Titux Metal <tituxmetal[at]lgdweb[dot]fr>
-# Co-Maintainer: Jguer <joaogg3 at gmail dot com>
+# Maintainer: Jguer <joaogg3 at gmail dot com>
 pkgname=yay-bin
 pkgver=11.1.2
 pkgrel=1
@@ -43,4 +42,3 @@ package() {
     install -Dm644 "${_output}/${lang}.mo" "${pkgdir}/usr/share/locale/${lang}/LC_MESSAGES/yay.mo"
   done
 }
-

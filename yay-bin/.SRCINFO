@@ -24,4 +24,3 @@ pkgbase = yay-bin
 	sha256sums_armv7h = 2888439d7a43e770bdf6098db9191b3193e4731e8b5ba0d1b3b8632d4a69304f
 
 pkgname = yay-bin
-
