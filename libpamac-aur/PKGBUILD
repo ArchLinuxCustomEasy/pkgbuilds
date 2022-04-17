@@ -5,12 +5,12 @@ ENABLE_FLATPAK=0
 ENABLE_SNAPD=0
 
 pkgname=libpamac-aur
-pkgver=11.2.0
-pkgrel=7
+pkgver=11.3.0
+pkgrel=0
 _pkgfixver=$pkgver
 
-_commit='c11324de9e5615f2947f09e2c4d6de00e59e5ff3'
-sha256sums=('1e32d68ccc2874192b6b7ada333b685ab345a69e1e8fbe72acca5ffad6a0e03f'
+_commit='269b2e48315f29f97539a34e0ab9efd0c4b3f930'
+sha256sums=('c4c21fcd1d2e6a293615de33950faa60ea354dbf43e832e6d140cf5fde5be18e'
             '6e0c25f0fcb0076ce78845b037e32925fcc3f1cd1670062c48ed35f564a10244'
             'c2b943318a01ba1f3dabbf32e48e6a6f4b4b774e167ab86c6bfee31aa4a3424c')
 
@@ -18,7 +18,7 @@ pkgdesc="Pamac package manager library based on libalpm"
 arch=('i686' 'x86_64' 'arm' 'armv6h' 'armv7h' 'aarch64')
 url="https://gitlab.manjaro.org/applications/libpamac"
 license=('GPL3')
-depends=('glib2>=2.42' 'json-glib' 'libsoup' 'dbus-glib' 'polkit' 'vte3>=0.38' 
+depends=('glib2>=2.42' 'json-glib' 'libsoup' 'dbus-glib' 'polkit' 'vte3>=0.38'
          'libnotify' 'pacman>=6.0' 'pacman<6.1' 'gnutls>=3.4' 'git'
          'appstream-glib>=0.7.18-1' 'archlinux-appstream-data' 'git')
 
@@ -53,8 +53,8 @@ build() {
   mkdir -p builddir
   cd builddir
   meson setup --buildtype=release \
-        --prefix=/usr \
-        --sysconfdir=/etc $define_meson
+    --prefix=/usr \
+    --sysconfdir=/etc $define_meson
   # build
   meson compile
 }
@@ -64,7 +64,7 @@ package() {
   DESTDIR="$pkgdir" ninja install
   # fix appstream issue
   install -Dm644 "$srcdir/fix-appstream-data.hook" "$pkgdir/etc/pacman.d/hooks/fix-appstream-data.hook"
-  install -Dm755 "$srcdir/fix-appstream-data.sh" "$pkgdir/etc/pacman.d/hooks.bin/fix-appstream-data.sh"  
+  install -Dm755 "$srcdir/fix-appstream-data.sh" "$pkgdir/etc/pacman.d/hooks.bin/fix-appstream-data.sh"
 
 }
 # vim:set ts=2 sw=2 et:
